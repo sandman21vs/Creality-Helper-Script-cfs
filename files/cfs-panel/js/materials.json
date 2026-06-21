@@ -1,0 +1,332 @@
+{
+ "00001": {
+  "product": "Generic PLA",
+  "type": "PLA",
+  "vendor": "Generic"
+ },
+ "00002": {
+  "product": "Generic PLA-Silk",
+  "type": "PLA",
+  "vendor": "Generic"
+ },
+ "00003": {
+  "product": "Generic PETG",
+  "type": "PETG",
+  "vendor": "Generic"
+ },
+ "00004": {
+  "product": "Generic ABS",
+  "type": "ABS",
+  "vendor": "Generic"
+ },
+ "00005": {
+  "product": "Generic TPU",
+  "type": "TPU",
+  "vendor": "Generic"
+ },
+ "00006": {
+  "product": "Generic PLA-CF",
+  "type": "PLA-CF",
+  "vendor": "Generic"
+ },
+ "00007": {
+  "product": "Generic ASA",
+  "type": "ASA",
+  "vendor": "Generic"
+ },
+ "00008": {
+  "product": "Generic PA",
+  "type": "PA",
+  "vendor": "Generic"
+ },
+ "00009": {
+  "product": "Generic PA-CF",
+  "type": "PA-CF",
+  "vendor": "Generic"
+ },
+ "00010": {
+  "product": "Generic BVOH",
+  "type": "BVOH",
+  "vendor": "Generic"
+ },
+ "00011": {
+  "product": "Generic PVA",
+  "type": "PVA",
+  "vendor": "Generic"
+ },
+ "00012": {
+  "product": "Generic HIPS",
+  "type": "HIPS",
+  "vendor": "Generic"
+ },
+ "00013": {
+  "product": "Generic PET-CF",
+  "type": "PET-CF",
+  "vendor": "Generic"
+ },
+ "00014": {
+  "product": "Generic PETG-CF",
+  "type": "PETG-CF",
+  "vendor": "Generic"
+ },
+ "00015": {
+  "product": "Generic PA6-CF",
+  "type": "PA6-CF",
+  "vendor": "Generic"
+ },
+ "00016": {
+  "product": "Generic PAHT-CF",
+  "type": "PAHT-CF",
+  "vendor": "Generic"
+ },
+ "00017": {
+  "product": "Generic PPS",
+  "type": "PPS",
+  "vendor": "Generic"
+ },
+ "00018": {
+  "product": "Generic PPS-CF",
+  "type": "PPS-CF",
+  "vendor": "Generic"
+ },
+ "00019": {
+  "product": "Generic PP",
+  "type": "PP",
+  "vendor": "Generic"
+ },
+ "00020": {
+  "product": "Generic PET",
+  "type": "PET",
+  "vendor": "Generic"
+ },
+ "00021": {
+  "product": "Generic PC",
+  "type": "PC",
+  "vendor": "Generic"
+ },
+ "00022": {
+  "product": "Generic PA612-CF",
+  "type": "PA-CF",
+  "vendor": "Generic"
+ },
+ "00023": {
+  "product": "Generic Support for PA",
+  "type": "PA",
+  "vendor": "Generic"
+ },
+ "00024": {
+  "product": "Generic Support for PLA",
+  "type": "PLA",
+  "vendor": "Generic"
+ },
+ "00025": {
+  "product": "Generic PA12-CF",
+  "type": "PA-CF",
+  "vendor": "Generic"
+ },
+ "00026": {
+  "product": "Generic TPU 64D",
+  "type": "TPU",
+  "vendor": "Generic"
+ },
+ "00027": {
+  "product": "Generic PETG-GF",
+  "type": "PETG-GF",
+  "vendor": "Generic"
+ },
+ "00031": {
+  "product": "Generic PP-CF",
+  "type": "PP-CF",
+  "vendor": "Generic"
+ },
+ "00032": {
+  "product": "Generic PCTG",
+  "type": "PCTG",
+  "vendor": "Generic"
+ },
+ "00033": {
+  "product": "Generic ASA-CF",
+  "type": "ASA-CF",
+  "vendor": "Generic"
+ },
+ "00034": {
+  "product": "Generic PA6-GF",
+  "type": "PA-GF",
+  "vendor": "Generic"
+ },
+ "00035": {
+  "product": "PLA-LW",
+  "type": "PLA",
+  "vendor": "eSUN"
+ },
+ "01001": {
+  "product": "Hyper PLA",
+  "type": "PLA",
+  "vendor": "Creality"
+ },
+ "01002": {
+  "product": "Hyper L-W PLA",
+  "type": "PLA",
+  "vendor": "Creality"
+ },
+ "01004": {
+  "product": "Hyper Stardust",
+  "type": "PLA",
+  "vendor": "Creality"
+ },
+ "01601": {
+  "product": "Soleyin Ultra PLA",
+  "type": "PLA",
+  "vendor": "Creality"
+ },
+ "02001": {
+  "product": "Hyper PLA-CF",
+  "type": "PLA-CF",
+  "vendor": "Creality"
+ },
+ "03001": {
+  "product": "Hyper ABS",
+  "type": "ABS",
+  "vendor": "Creality"
+ },
+ "04001": {
+  "product": "CR-PLA",
+  "type": "PLA",
+  "vendor": "Creality"
+ },
+ "05001": {
+  "product": "CR-Silk",
+  "type": "PLA",
+  "vendor": "Creality"
+ },
+ "06001": {
+  "product": "CR-PETG",
+  "type": "PETG",
+  "vendor": "Creality"
+ },
+ "06002": {
+  "product": "Hyper PETG",
+  "type": "PETG",
+  "vendor": "Creality"
+ },
+ "06003": {
+  "product": "Hyper PETG-CF",
+  "type": "PETG-CF",
+  "vendor": "Creality"
+ },
+ "07001": {
+  "product": "CR-ABS",
+  "type": "ABS",
+  "vendor": "Creality"
+ },
+ "07002": {
+  "product": "Hyper PC",
+  "type": "PC",
+  "vendor": "Creality"
+ },
+ "08001": {
+  "product": "Ender-PLA",
+  "type": "PLA",
+  "vendor": "Creality"
+ },
+ "09001": {
+  "product": "EN-PLA+",
+  "type": "PLA",
+  "vendor": "Creality"
+ },
+ "09002": {
+  "product": "ENDER FAST PLA",
+  "type": "PLA",
+  "vendor": "Creality"
+ },
+ "10001": {
+  "product": "HP-TPU",
+  "type": "TPU",
+  "vendor": "Creality"
+ },
+ "11001": {
+  "product": "CR-Nylon",
+  "type": "PA",
+  "vendor": "Creality"
+ },
+ "12002": {
+  "product": "Hyper PPA-CF",
+  "type": "PA-CF",
+  "vendor": "Creality"
+ },
+ "12003": {
+  "product": "Hyper PAHT-CF",
+  "type": "PA-CF",
+  "vendor": "Creality"
+ },
+ "12004": {
+  "product": "Hyper PA612-CF",
+  "type": "PA612-CF",
+  "vendor": "Creality"
+ },
+ "12005": {
+  "product": "Hyper PA6-CF",
+  "type": "PA6-CF",
+  "vendor": "Creality"
+ },
+ "13001": {
+  "product": "CR-PLA Carbon",
+  "type": "PLA-CF",
+  "vendor": "Creality"
+ },
+ "14001": {
+  "product": "CR-PLA Matte",
+  "type": "PLA",
+  "vendor": "Creality"
+ },
+ "15001": {
+  "product": "CR-PLA Fluo",
+  "type": "PLA",
+  "vendor": "Creality"
+ },
+ "16001": {
+  "product": "CR-TPU",
+  "type": "TPU",
+  "vendor": "Creality"
+ },
+ "17001": {
+  "product": "CR-Wood",
+  "type": "PLA",
+  "vendor": "Creality"
+ },
+ "18001": {
+  "product": "HP Ultra PLA",
+  "type": "PLA",
+  "vendor": "Creality"
+ },
+ "19001": {
+  "product": "HP-ASA",
+  "type": "ASA",
+  "vendor": "Creality"
+ },
+ "29001": {
+  "product": "Hyper Marble",
+  "type": "PLA",
+  "vendor": "Creality"
+ },
+ "E1001": {
+  "product": "PLA+",
+  "type": "PLA",
+  "vendor": "eSUN"
+ },
+ "P1001": {
+  "product": "Panchroma PLA Satin",
+  "type": "PLA",
+  "vendor": "Polymaker"
+ },
+ "P1002": {
+  "product": "PolySonic PLA Pro",
+  "type": "PLA",
+  "vendor": "Polymaker"
+ },
+ "P1003": {
+  "product": "Panchroma PLA Matte",
+  "type": "PLA",
+  "vendor": "Polymaker"
+ }
+}

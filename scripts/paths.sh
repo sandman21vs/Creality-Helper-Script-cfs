@@ -68,7 +68,13 @@ function set_paths() {
   # Mainsail #
   MAINSAIL_FOLDER="${USR_DATA}/mainsail"
   MAINSAIL_URL="https://github.com/mainsail-crew/mainsail/releases/latest/download/mainsail.zip"
-  
+
+  # Creality CFS Panel #
+  CFS_PANEL_SRC="${HS_FILES}/cfs-panel"
+  CFS_PANEL_FOLDER="${USR_DATA}/creality-cfs-panel"
+  CFS_PANEL_PORT="4410"
+  NGINX_MAIN_CONF="${NGINX_FOLDER}/nginx/nginx.conf"
+
   # Entware #
   ENTWARE_FILE="/opt/bin/opkg"
   ENTWARE_URL="${HS_FILES}/entware/generic.sh"

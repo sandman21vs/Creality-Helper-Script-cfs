@@ -41,6 +41,9 @@ function install_menu_ui_k1() {
   menu_option '23' 'Install' 'OctoApp Companion'
   menu_option '24' 'Install' 'SimplyPrint'
   hr
+  subtitle '•WEB DASHBOARD:'
+  menu_option '25' 'Install' 'Creality CFS Panel (port 4410)'
+  hr
   inner_line
   hr
   bottom_menu_option 'b' 'Back to [Main Menu]' "${yellow}"
@@ -248,6 +251,14 @@ function install_menu_k1() {
           error_msg "Fluidd or Mainsail is needed, please install one of them first!"
         else
           run "install_simplyprint" "install_menu_ui_k1"
+        fi;;
+      25)
+        if [ -d "$CFS_PANEL_FOLDER" ]; then
+          error_msg "Creality CFS Panel is already installed!"
+        elif [ ! -d "$MOONRAKER_FOLDER" ] && [ ! -d "$NGINX_FOLDER" ]; then
+          error_msg "Moonraker and Nginx are needed, please install them first!"
+        else
+          run "install_cfs_panel" "install_menu_ui_k1"
         fi;;
       B|b)
         clear; main_menu; break;;

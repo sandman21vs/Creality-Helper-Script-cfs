@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Creality CFS Panel</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="title">Creality <span data-i18n="app.subtitle">CFS Panel</span></div>
+    <div class="conn">
+      <span id="status" class="status off" data-i18n="status.off">disconnected</span>
+      <button id="btn-reconnect" class="ghost" data-i18n="btn.reconnect">Reconnect</button>
+      <button id="btn-demo" class="ghost" data-i18n="btn.demo">Demo</button>
+      <select id="lang" title="Language"><option value="en">EN</option><option value="pt">PT</option></select>
+    </div>
+  </header>
+
+  <main id="content">
+    <p class="hint" id="empty-hint" data-i18n="status.connecting">connecting…</p>
+
+    <section id="dashboard" class="dashboard" hidden>
+      <!-- Câmera (destaque, largura total) -->
+      <div class="panel cam-panel">
+        <div class="panel-head"><span data-i18n="cam.title">Camera</span>
+          <span id="cam-toggle" class="link" role="button" data-i18n="cam.toggle">on/off</span></div>
+        <div class="cam-wrap">
+          <img id="cam" alt="stream" hidden>
+          <div id="cam-off" class="cam-off" data-i18n="cam.off">camera off</div>
+        </div>
+      </div>
+
+      <div class="dash-grid">
+        <!-- Impressão atual -->
+        <div class="panel print-panel">
+          <div class="panel-head"><span data-i18n="print.title">Current print</span> <span id="dev-state" class="badge">—</span></div>
+          <div id="print-name" class="print-name muted" data-i18n="print.none">no job</div>
+          <div class="bar big"><i id="print-bar" style="width:0%"></i></div>
+          <div class="print-meta">
+            <span id="print-pct">0%</span>
+            <span id="print-layer">—</span>
+            <span id="print-elapsed">—</span>
+            <span id="print-left">—</span>
+          </div>
+          <div class="row gap" id="print-ctrls">
+            <button id="btn-pause" disabled data-i18n="print.pause">Pause</button>
+            <button id="btn-resume" disabled data-i18n="print.resume">Resume</button>
+            <button id="btn-stop" class="danger" disabled data-i18n="print.stop">Cancel</button>
+          </div>
+        </div>
+
+        <!-- Temperaturas -->
+        <div class="panel temp-panel">
+          <div class="panel-head" data-i18n="temp.title">Temperatures</div>
+          <div class="temp-row">
+            <div class="temp-label" data-i18n="temp.nozzle">Nozzle</div>
+            <div class="temp-val"><b id="t-nozzle">—</b><span id="t-nozzle-tgt" class="muted"></span></div>
+            <input id="set-nozzle" class="temp-in" type="number" min="0" max="320" placeholder="°C">
+            <button data-set="nozzle" data-i18n="btn.set">Set</button>
+            <button data-set="nozzle" data-off="1" class="ghost" data-i18n="btn.off">Off</button>
+          </div>
+          <div class="temp-row">
+            <div class="temp-label" data-i18n="temp.bed">Bed</div>
+            <div class="temp-val"><b id="t-bed">—</b><span id="t-bed-tgt" class="muted"></span></div>
+            <input id="set-bed" class="temp-in" type="number" min="0" max="120" placeholder="°C">
+            <button data-set="bed" data-i18n="btn.set">Set</button>
+            <button data-set="bed" data-off="1" class="ghost" data-i18n="btn.off">Off</button>
+          </div>
+          <div class="temp-row">
+            <div class="temp-label" data-i18n="temp.chamber">Chamber</div>
+            <div class="temp-val"><b id="t-box">—</b></div>
+            <span class="muted small" data-i18n="temp.readonly">read-only</span>
+          </div>
+        </div>
+
+        <!-- LED + Velocidade -->
+        <div class="panel misc-panel">
+          <div class="panel-head" data-i18n="misc.title">LED &amp; Speed</div>
+          <div class="row spread">
+            <span data-i18n="misc.light">Light</span>
+            <label class="switch"><input type="checkbox" id="led"><span class="slider"></span></label>
+          </div>
+          <div class="sep"></div>
+          <div class="row spread"><span data-i18n="misc.speed">Speed</span><b id="speed-val">100%</b></div>
+          <div class="speed-presets" id="speed-presets">
+            <button data-mode="0" data-pct="50"><span data-i18n="speed.silent">Silent</span><em>50%</em></button>
+            <button data-mode="1" data-pct="100"><span data-i18n="speed.standard">Standard</span><em>100%</em></button>
+            <button data-mode="2" data-pct="125"><span data-i18n="speed.sport">Sport</span><em>125%</em></button>
+            <button data-mode="2" data-pct="160"><span data-i18n="speed.ultra">Ultra</span><em>160%</em></button>
+          </div>
+        </div>
+
+        <!-- Ventiladores -->
+        <div class="panel fan-panel">
+          <div class="panel-head" data-i18n="fan.title">Fans</div>
+          <div class="fan-row"><span data-i18n="fan.model">Model</span><input type="range" min="0" max="100" id="fan-model"><b id="fan-model-v">0%</b></div>
+          <div class="fan-row"><span data-i18n="fan.case">Case</span><input type="range" min="0" max="100" id="fan-case"><b id="fan-case-v">0%</b></div>
+          <div class="fan-row"><span data-i18n="fan.side">Side</span><input type="range" min="0" max="100" id="fan-aux"><b id="fan-aux-v">0%</b></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Abas ===== -->
+    <nav id="tabs" class="tabs" hidden>
+      <button class="tab active" data-tab="filament" data-i18n="tab.filament">Filament (CFS)</button>
+      <button class="tab" data-tab="control" data-i18n="tab.control">Control</button>
+      <button class="tab" data-tab="files" data-i18n="tab.files">Files</button>
+      <button class="tab" data-tab="history" data-i18n="tab.history">Logs</button>
+      <button class="tab" data-tab="video" data-i18n="tab.video">Video</button>
+    </nav>
+
+    <!-- Filamento (CFS) -->
+    <section class="tabpane active" data-pane="filament">
+      <div id="boxes" class="boxes"></div>
+      <div id="cfs-ctrls" class="cfs-ctrls" hidden>
+        <div class="sel-info"><span data-i18n="cfs.selected">Selected slot:</span> <b id="sel-label">—</b> <span id="sel-prod" class="muted"></span></div>
+        <div class="row gap wrap">
+          <button id="btn-feed" data-i18n="btn.feed">Load (Feed)</button>
+          <button id="btn-retract" data-i18n="btn.retract">Retract</button>
+          <button id="btn-refresh-rfid" class="ghost" data-i18n="btn.refreshRfid">Reread RFID</button>
+          <button id="btn-edit" class="ghost" data-i18n="btn.edit">Edit slot</button>
+        </div>
+        <div class="sep"></div>
+        <div class="row gap wrap">
+          <label class="chk"><input type="checkbox" id="cfg-auto"> <span data-i18n="cfs.auto">AUTO (auto-refill)</span></label>
+          <label class="chk"><input type="checkbox" id="cfg-autofeed"> <span data-i18n="cfs.autofeed">Auto-feed</span></label>
+          <span class="dry"><span data-i18n="cfs.drying">Drying:</span>
+            <input id="dry-temp" type="number" min="0" max="70" placeholder="°C" class="temp-in">
+            <button id="btn-dry" data-i18n="btn.apply">Apply</button>
+            <button id="btn-dry-off" class="ghost" data-i18n="btn.stopDry">Stop</button>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Controle XYZ -->
+    <section class="tabpane" data-pane="control" hidden>
+      <div class="control-grid">
+        <div class="panel">
+          <div class="panel-head"><span data-i18n="ctrl.position">Position</span> <span id="pos" class="muted">X — Y — Z —</span></div>
+          <div class="row gap wrap homerow">
+            <button data-home="X" data-i18n="btn.homeX">Home X</button>
+            <button data-home="Y" data-i18n="btn.homeY">Home Y</button>
+            <button data-home="Z" data-i18n="btn.homeZ">Home Z</button>
+            <button data-home="X Y Z" class="primary" data-i18n="btn.homeAll">Home All</button>
+          </div>
+          <div class="sep"></div>
+          <div class="row gap wrap">
+            <span class="muted" data-i18n="ctrl.step">Step:</span>
+            <span class="steps" id="steps">
+              <button data-step="0.1">0.1</button>
+              <button data-step="1" class="active">1</button>
+              <button data-step="10">10</button>
+              <button data-step="50">50</button>
+            </span>
+          </div>
+          <div class="jog">
+            <div class="jog-xy">
+              <button data-jog="Y+">Y+</button>
+              <div class="jog-mid">
+                <button data-jog="X-">X−</button>
+                <span class="jog-c">XY</span>
+                <button data-jog="X+">X+</button>
+              </div>
+              <button data-jog="Y-">Y−</button>
+            </div>
+            <div class="jog-z">
+              <button data-jog="Z+">Z+</button>
+              <span class="jog-c">Z</span>
+              <button data-jog="Z-">Z−</button>
+            </div>
+          </div>
+          <div class="sep"></div>
+          <div class="row gap wrap">
+            <span class="muted" data-i18n="ctrl.zoffset">Z-offset (baby-step):</span>
+            <button data-zoff="-0.05">−0.05</button>
+            <button data-zoff="-0.01">−0.01</button>
+            <button data-zoff="+0.01">+0.01</button>
+            <button data-zoff="+0.05">+0.05</button>
+          </div>
+        </div>
+
+        <div class="panel console">
+          <div class="panel-head" data-i18n="ctrl.gcode">Console G-code</div>
+          <div id="gcode-log" class="gcode-log"></div>
+          <div class="gcode-input">
+            <input id="gcode-in" type="text" data-i18n-ph="ctrl.gcodePh" placeholder="Send G-code (e.g. M104 S0)">
+            <button id="btn-gcode" class="primary" data-i18n="btn.send">Send</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Arquivos -->
+    <section class="tabpane" data-pane="files" hidden>
+      <div class="row spread"><div class="panel-head plain" data-i18n="files.title">Local files</div><button id="files-refresh" class="ghost" data-i18n="btn.refresh">Refresh</button></div>
+      <div id="files" class="files"><p class="hint" data-i18n="files.hint">Click Refresh to list.</p></div>
+    </section>
+
+    <!-- Registros -->
+    <section class="tabpane" data-pane="history" hidden>
+      <div class="row spread"><div class="panel-head plain" data-i18n="history.title">Print history</div><button id="history-refresh" class="ghost" data-i18n="btn.refresh">Refresh</button></div>
+      <div id="history" class="history"><p class="hint" data-i18n="history.hint">Click Refresh to list.</p></div>
+    </section>
+
+    <!-- Vídeo -->
+    <section class="tabpane" data-pane="video" hidden>
+      <div class="row spread"><div class="panel-head plain" data-i18n="video.title">Timelapses</div><button id="video-refresh" class="ghost" data-i18n="btn.refresh">Refresh</button></div>
+      <div id="video" class="video"><p class="hint" data-i18n="video.hint">Click Refresh to list.</p></div>
+    </section>
+  </main>
+
+  <!-- Modal editar slot -->
+  <div id="edit-modal" class="modal" hidden>
+    <div class="modal-box">
+      <div class="modal-head"><span data-i18n="edit.title">Edit slot</span> <span id="edit-label"></span></div>
+      <label><span data-i18n="edit.type">Type</span> <input id="edit-type" type="text" placeholder="PLA"></label>
+      <label><span data-i18n="edit.vendor">Vendor</span> <input id="edit-vendor" type="text" placeholder="Creality"></label>
+      <label><span data-i18n="edit.name">Product</span> <input id="edit-name" type="text" placeholder="Hyper PLA"></label>
+      <label><span data-i18n="edit.color">Color</span> <input id="edit-color" type="color" value="#22c55e"></label>
+      <div class="row gap">
+        <label class="grow"><span data-i18n="edit.min">Min temp</span> <input id="edit-min" type="number" placeholder="190"></label>
+        <label class="grow"><span data-i18n="edit.max">Max temp</span> <input id="edit-max" type="number" placeholder="230"></label>
+      </div>
+      <div class="row gap end">
+        <button id="edit-cancel" class="ghost" data-i18n="btn.cancel">Cancel</button>
+        <button id="edit-save" class="primary" data-i18n="btn.save">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/cfs-model.js"></script>
+  <script src="js/cfs-ws.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

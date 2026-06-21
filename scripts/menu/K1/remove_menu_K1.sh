@@ -41,6 +41,9 @@ function remove_menu_ui_k1() {
   menu_option '23' 'Remove' 'OctoApp Companion'
   menu_option '24' 'Remove' 'SimplyPrint'
   hr
+  subtitle '•WEB DASHBOARD:'
+  menu_option '25' 'Remove' 'Creality CFS Panel (port 4410)'
+  hr
   inner_line
   hr
   bottom_menu_option 'b' 'Back to [Main Menu]' "${yellow}"
@@ -232,6 +235,12 @@ function remove_menu_k1() {
           error_msg "SimplyPrint is not installed!"
         else
           run "remove_simplyprint" "remove_menu_ui_k1"
+        fi;;
+      25)
+        if [ ! -d "$CFS_PANEL_FOLDER" ]; then
+          error_msg "Creality CFS Panel is not installed!"
+        else
+          run "remove_cfs_panel" "remove_menu_ui_k1"
         fi;;
       B|b)
         clear; main_menu; break;;
